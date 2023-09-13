@@ -1,0 +1,11 @@
+default: --format pretty -p prd -p chrome -p html
+default_hml: -p hml -p chrome
+
+html: --format html #--out=reports/report.html 
+
+hml: ENVIRONMENT="hml"
+prd: ENVIRONMENT="prd"
+
+chrome: BROWSER="chrome"
+
+headless: HEADLESS="true"
