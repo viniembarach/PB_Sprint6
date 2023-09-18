@@ -1,14 +1,3 @@
-Dado('que esteja na home') do
-    @home_page = Pages::Home.new
-    @home_page.load
-end
-  
-E('esteja logado') do
-    user_data = Factory::Static.static_data('standard_user')
-    @home_page.login_page.input_username_and_password_for_login(user_data['username'], user_data['password'])
-    page.should have_selector('div.app_logo', text: 'Swag Labs')
-end
-  
 Quando('entrar em contato pelo Twitter') do
     click_link('Twitter')
 end

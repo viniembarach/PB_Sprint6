@@ -1,17 +1,35 @@
 require_relative '../sections/login_page'
+require_relative '../sections/header'
+require_relative '../sections/products'
+require_relative '../sections/pdp_page'
 
 module Pages
     class Home < SitePrism::Page
-        set_url '/'
+        set_url '/inventory.html'
 
         section :login_page, Sections::Login_page, '#login_button_container'
+        section :header, Sections::Header, '#header_container'
+        section :product_items, Sections::Products, '#inventory_container .inventory_container'
+        section :product_pdp, Sections::Pdp_page, '#inventory_item_container'
 
-        # def search_for(product)
-        #     header.click_and_input_text_for_search(product)
-        #     wait_until_loader_visible # espera que fique visivel para mudar (wait: 2) se não ele pega o padrao do env
-        #     wait_until_loader_invisible # e depois espera que fique invisivel
-        #     header.btn_open_search.click
-        #     header.clsoe_search.click #clicando no botão para fechar a busca
-        # end
+        def add_product_get_name_and_price
+            product_items.add_to_cart_button.click
+            product_items.get_name_and_price
+        end
+
+        def remove_product
+            product_items.remove_button.click
+        end
+        
+        def go_add_product_get_name_and_price_pdp
+            product_items.go_to_pdp.click
+            product_pdp.add_to_cart_button_pdp.click
+            product_pdp.get_name_and_price_pdp
+        end
+
+        def remove_product_pdp
+            product_items.go_to_pdp.click
+            product_pdp.remove_button_pdp.click
+        end
     end
 end
