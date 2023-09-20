@@ -20,5 +20,15 @@ module Sections
         def go_to_pdp
             inventory_items.first.find('.inventory_item_name')
         end
+
+        private def add_product_to_cart(index)
+            inventory_items[index].find('.btn_inventory').click
+          end
+      
+        def add_products_to_cart(quantity)
+            (0...quantity).each do |i|
+                add_product_to_cart(i)
+            end
+        end
     end
 end

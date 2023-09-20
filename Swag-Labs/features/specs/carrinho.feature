@@ -9,14 +9,14 @@ Funcionalidade: Carrinho
         E esteja logado
 
     @access_cart
-    Cenário: Adicionar produto pela vitrine
+    Cenário: Acessar o carrinho
         Quando acessar o icone do carrinho
         Então deverá ser direcionado para a pagina do carrinho
 
     @remove_product_cart
     Cenário: Remover produto pelo carrinho
         Quando acessar o carrinho com um produto nele
-        E o usuário remover ele do carrinho
+        E o usuário remover ele pelo carrinho
         Então deverá ser retirado do carrinho
     
     @quantity_icon_cart

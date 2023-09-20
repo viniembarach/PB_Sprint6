@@ -1,51 +1,66 @@
 Quando('acessar o icone do carrinho') do
-    pending # Write code here that turns the phrase above into concrete actions
+    @home_page.header.cart_button.click
 end
   
 Então('deverá ser direcionado para a pagina do carrinho') do
-    pending # Write code here that turns the phrase above into concrete actions
+    expect(current_url).to eq 'https://www.saucedemo.com/cart.html'
 end
   
 Quando('acessar o carrinho com um produto nele') do
-    pending # Write code here that turns the phrase above into concrete actions
+    @product_name, @product_price = @home_page.add_product_get_name_and_price
+    @cart_page = Pages::Cart.new
+    @cart_page.load
+    cart_name, cart_price = @cart_page.get_name_and_price_cart
+    expect(@product_name).to eq(cart_name)
+    expect(@product_price).to eq(cart_price)
 end
   
-Quando('o usuário remover ele do carrinho') do
-    pending # Write code here that turns the phrase above into concrete actions
+E('o usuário remover ele pelo carrinho') do
+    @cart_page.remove_product_cart
 end
   
 Então('deverá ser retirado do carrinho') do
-    pending # Write code here that turns the phrase above into concrete actions
+    expect(@cart_page.check_cart_empty).to be true
 end
   
 Quando('o usuário tiver mais que um produto no carrinho') do
-    pending # Write code here that turns the phrase above into concrete actions
+    @home_page.add_and_cart_icon_check
 end
   
 Então('o número no icone do carrinho deverá ser o mesmo de itens no carrinho') do
-    pending # Write code here that turns the phrase above into concrete actions
-end
+    @cart_page = Pages::Cart.new
+    @cart_page.load
+    cart_item_count = @cart_page.count_cart
+    icon_cart_count = @cart_page.get_icon_cart_count
+    expect(icon_cart_count).to eq(cart_item_count)
+  end
   
 Quando('acessar o carrinho') do
-    pending # Write code here that turns the phrase above into concrete actions
+    @cart_page = Pages::Cart.new
+    @cart_page.load
 end
   
-Quando('o usuário clicar em continua comprando') do
-    pending # Write code here that turns the phrase above into concrete actions
+E('o usuário clicar em continua comprando') do
+    @cart_page.continue_shopping_cart
 end
   
 Então('deverá ser direcionado a vitrine') do
-    pending # Write code here that turns the phrase above into concrete actions
+    expect(current_url).to eq 'https://www.saucedemo.com/inventory.html'
 end
   
 Quando('o usuário tiver um item no carrinho') do
-    pending # Write code here that turns the phrase above into concrete actions
+    @product_name, @product_price = @home_page.add_product_get_name_and_price
+    @cart_page = Pages::Cart.new
+    @cart_page.load
+    cart_name, cart_price = @cart_page.get_name_and_price_cart
+    expect(@product_name).to eq(cart_name)
+    expect(@product_price).to eq(cart_price)
 end
   
-Quando('continuar para o checkout') do
-    pending # Write code here that turns the phrase above into concrete actions
+E('continuar para o checkout') do
+    @cart_page.go_to_checkout_cart
 end
   
 Então('deverá ser direcionado a pagina de checkout') do
-    pending # Write code here that turns the phrase above into concrete actions
+    expect(current_url).to eq 'https://www.saucedemo.com/checkout-step-one.html'
 end

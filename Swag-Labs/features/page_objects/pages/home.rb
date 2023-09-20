@@ -31,5 +31,9 @@ module Pages
             product_items.go_to_pdp.click
             product_pdp.remove_button_pdp.click
         end
+
+        def add_and_cart_icon_check
+            product_items.add_products_to_cart(3)
+        end
     end
 end
