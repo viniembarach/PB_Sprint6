@@ -11,7 +11,6 @@ Funcionalidade: Checkout
     @validate_fields_checkout
     Cenário: Validar campos do checkout
         Quando o usuário entrar para fazer o checkout
-        E os campos estiverem vazios
         Então deverá ser encontrado os campos
 
     @success_checkout

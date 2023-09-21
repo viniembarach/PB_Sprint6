@@ -7,10 +7,10 @@ module Pages
     class Home < SitePrism::Page
         set_url '/inventory.html'
 
-        section :login_page, Sections::Login_page, '#login_button_container'
-        section :header, Sections::Header, '#header_container'
-        section :product_items, Sections::Products, '#inventory_container .inventory_container'
-        section :product_pdp, Sections::Pdp_page, '#inventory_item_container'
+        section :login_page,    Sections::Login_page, '#login_button_container'
+        section :header,        Sections::Header,     '#header_container'
+        section :product_items, Sections::Products,   '#inventory_container .inventory_container'
+        section :product_pdp,   Sections::Pdp_page,   '#inventory_item_container'
 
         def add_product_get_name_and_price
             product_items.add_to_cart_button.click

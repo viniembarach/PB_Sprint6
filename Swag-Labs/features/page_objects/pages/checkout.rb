@@ -8,8 +8,8 @@ module Pages
         
         def send_information(checkout_data)
             check_items.input_first_name.set checkout_data[:first_name]
-            check_items.input_last_name.set checkout_data[:last_name]
-            check_items.input_zip_code.set checkout_data[:zip_code]
+            check_items.input_last_name.set  checkout_data[:last_name]
+            check_items.input_zip_code.set   checkout_data[:zip_code]
             check_items.continue_button.click
         end
     end

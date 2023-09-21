@@ -9,6 +9,26 @@ E('esteja logado') do
     page.should have_selector('div.app_logo', text: 'Swag Labs')
 end
 
+Quando('aplicar o filtro de A a Z na vitrine') do
+    @original_product_names = @home_page.product_items.get_product_names
+    @home_page.header.select_filter_option('Name (A to Z)')
+    @filtered_product_names = @home_page.product_items.get_product_names
+end
+  
+Então('a vitrine deverá exibir os produtos em ordem alfabética de A a Z') do
+    expect(@filtered_product_names).to eq(@original_product_names.sort)
+end
+  
+Quando('aplicar o filtro de Z a A na vitrine') do
+    @original_product_names = @home_page.product_items.get_product_names
+    @home_page.header.select_filter_option('Name (Z to A)')
+    @filtered_product_names = @home_page.product_items.get_product_names
+end
+  
+Então('a vitrine deverá exibir os produtos em ordem alfabética de Z a A') do
+    expect(@filtered_product_names).to eq(@original_product_names.sort { |a, b| b <=> a })
+end
+
 Quando('adicionar um produto pela vitrine') do
     @product_name, @product_price = @home_page.add_product_get_name_and_price
 end
@@ -16,8 +36,8 @@ end
 Então('o produto deverá ser adicinado ao carrinho') do
     @cart_page = Pages::Cart.new
     @cart_page.load
-    cart_name, cart_price = @cart_page.get_name_and_price_cart
-    expect(@product_name).to eq(cart_name)
+    cart_name, cart_price = @cart_page.cart_items.get_name_and_price_cart
+    expect(@product_name).to  eq(cart_name)
     expect(@product_price).to eq(cart_price)
 end
                                                                                
@@ -25,8 +45,8 @@ Quando('o usuário ja tiver um produto adicionado ao carrinho') do
     @product_name, @product_price = @home_page.add_product_get_name_and_price
     @cart_page = Pages::Cart.new
     @cart_page.load
-    cart_name, cart_price = @cart_page.get_name_and_price_cart
-    expect(@product_name).to eq(cart_name)
+    cart_name, cart_price = @cart_page.cart_items.get_name_and_price_cart
+    expect(@product_name).to  eq(cart_name)
     expect(@product_price).to eq(cart_price)
 end
                                                                                
@@ -39,7 +59,7 @@ end
 Então('o produto deverá ser retirado do carrinho') do
     @cart_page = Pages::Cart.new
     @cart_page.load
-    expect(@cart_page.check_cart_empty).to be true
+    expect(@cart_page.cart_items.check_cart_empty).to be true
 end
 
 Quando('adicionar um produto pela PDP') do

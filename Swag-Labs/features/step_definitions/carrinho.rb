@@ -10,17 +10,17 @@ Quando('acessar o carrinho com um produto nele') do
     @product_name, @product_price = @home_page.add_product_get_name_and_price
     @cart_page = Pages::Cart.new
     @cart_page.load
-    cart_name, cart_price = @cart_page.get_name_and_price_cart
-    expect(@product_name).to eq(cart_name)
+    cart_name, cart_price = @cart_page.cart_items.get_name_and_price_cart
+    expect(@product_name).to  eq(cart_name)
     expect(@product_price).to eq(cart_price)
 end
   
 E('o usuário remover ele pelo carrinho') do
-    @cart_page.remove_product_cart
+    @cart_page.cart_items.remove_product_cart
 end
   
 Então('deverá ser retirado do carrinho') do
-    expect(@cart_page.check_cart_empty).to be true
+    expect(@cart_page.cart_items.check_cart_empty).to be true
 end
   
 Quando('o usuário tiver mais que um produto no carrinho') do
@@ -30,7 +30,7 @@ end
 Então('o número no icone do carrinho deverá ser o mesmo de itens no carrinho') do
     @cart_page = Pages::Cart.new
     @cart_page.load
-    cart_item_count = @cart_page.count_cart
+    cart_item_count = @cart_page.cart_items.count_cart
     icon_cart_count = @cart_page.get_icon_cart_count
     expect(icon_cart_count).to eq(cart_item_count)
   end
@@ -41,7 +41,7 @@ Quando('acessar o carrinho') do
 end
   
 E('o usuário clicar em continua comprando') do
-    @cart_page.continue_shopping_cart
+    @cart_page.cart_items.continue_shopping_cart
 end
   
 Então('deverá ser direcionado a vitrine') do
@@ -52,13 +52,13 @@ Quando('o usuário tiver um item no carrinho') do
     @product_name, @product_price = @home_page.add_product_get_name_and_price
     @cart_page = Pages::Cart.new
     @cart_page.load
-    cart_name, cart_price = @cart_page.get_name_and_price_cart
-    expect(@product_name).to eq(cart_name)
+    cart_name, cart_price = @cart_page.cart_items.get_name_and_price_cart
+    expect(@product_name).to  eq(cart_name)
     expect(@product_price).to eq(cart_price)
 end
   
 E('continuar para o checkout') do
-    @cart_page.go_to_checkout_cart
+    @cart_page.cart_items.go_to_checkout_cart
 end
   
 Então('deverá ser direcionado a pagina de checkout') do

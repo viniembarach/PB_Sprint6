@@ -3,14 +3,10 @@ Quando('o usuário entrar para fazer o checkout') do
     @checkout_page.load
 end
   
-E('os campos estiverem vazios') do
-    @checkout_page.check_items.clear_fields
-end
-  
 Então('deverá ser encontrado os campos') do
-    expect(@checkout_page.check_items.input_first_name.value).to be_empty
-    expect(@checkout_page.check_items.input_last_name.value).to be_empty
-    expect(@checkout_page.check_items.input_zip_code.value).to be_empty
+    expect(@checkout_page.check_items).to have_input_first_name
+    expect(@checkout_page.check_items).to have_input_last_name
+    expect(@checkout_page.check_items).to have_input_zip_code
 end
   
 Quando('o usuário adiciona um item ao carrinho') do
@@ -20,7 +16,7 @@ end
 E('entra no carrinho e prossegue para o checkout') do
     @cart_page = Pages::Cart.new
     @cart_page.load
-    @cart_page.go_to_checkout_cart
+    @cart_page.cart_items.go_to_checkout_cart
 end
   
 E('o usuário realizar o checkout bem-sucedido com informações válidas') do

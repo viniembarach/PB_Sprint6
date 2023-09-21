@@ -8,6 +8,16 @@ Funcionalidade: Produtos
         Dado que esteja na home
         E esteja logado
 
+    @filter_a_to_z
+    Cenário: Filtrar produtos de A a Z
+        Quando aplicar o filtro de A a Z na vitrine
+        Então a vitrine deverá exibir os produtos em ordem alfabética de A a Z
+
+    @filter_z_to_a
+    Cenário: Filtrar produtos de Z a A
+        Quando aplicar o filtro de Z a A na vitrine
+        Então a vitrine deverá exibir os produtos em ordem alfabética de Z a A
+
     @add_showcase_product
     Cenário: Adicionar produto pela vitrine
         Quando adicionar um produto pela vitrine

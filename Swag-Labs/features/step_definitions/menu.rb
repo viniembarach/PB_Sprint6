@@ -45,5 +45,5 @@ end
 Então('deverá resetar o aplicativo') do
     @cart_page = Pages::Cart.new
     @cart_page.load
-    expect(@cart_page.check_cart_empty).to be true
+    expect(@cart_page.cart_items.check_cart_empty).to be true
 end

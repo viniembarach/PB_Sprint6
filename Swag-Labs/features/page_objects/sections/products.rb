@@ -2,6 +2,11 @@ module Sections
     class Products < SitePrism::Section
         elements :inventory_items, '.inventory_item'
         
+        def get_product_names
+            product_name_elements = inventory_items.map { |item| item.find('.inventory_item_name').text }
+            product_name_elements
+        end
+
         def add_to_cart_button
             inventory_items.first.find('.btn_inventory')
         end

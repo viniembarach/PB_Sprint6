@@ -10,6 +10,11 @@ Funcionalidade: Login
     Contexto: Estar no site 
         Dado que o usuário abriu o Swag Labs no navegador
 
+    @validate_login
+    Cenário: Validar campos do Login
+        Quando o usuário entrar para fazer o login
+        Então deverá haver os campos e o botão de login
+
     @login_standard_user
     Cenário: Login com usuário padrão
         Quando o usuário insere o username e a senha corretos e prossegue com o login
