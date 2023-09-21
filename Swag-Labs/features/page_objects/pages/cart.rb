@@ -1,9 +1,11 @@
 #require_relative '../sections/cart_page'
+require_relative '../sections/header'
 
 module Pages
     class Cart < SitePrism::Page
         set_url '/cart.html'
 
+        section :header, Sections::Header, '#header_container'
         #section :cart_items, Sections::Cart_page, '.cart_list'
         elements :cart_items, '.cart_list .cart_item'
         element :remove_button, '.cart_item .btn_secondary'
@@ -41,6 +43,6 @@ module Pages
 
         def get_icon_cart_count
             icon_cart_num.text.to_i
-          end
+        end
     end
 end

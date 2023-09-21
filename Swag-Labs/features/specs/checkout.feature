@@ -16,19 +16,21 @@ Funcionalidade: Checkout
 
     @success_checkout
     Cenário: Realizar checkout bem-sucedido com informações válidas
-        Quando o usuário realizar o checkout bem-sucedido com informações válidas
-        E conferir o item adicionado no passo dois do checkout
+        Quando o usuário adiciona um item ao carrinho
+        E entra no carrinho e prossegue para o checkout
+        E o usuário realizar o checkout bem-sucedido com informações válidas
         Então deverá ser direcionado para a finalização da compra
 
     @wip
     @blank_fields_checkout
-    Cenário: Tentativa de checkout com informações em branco;
-        Quando o usuário realizar o checkout com as informações em branco
-        E o usuário clicar em continuar para o passo dois
-        Então deverá ser direcionado para o passo dois do checkout
+    Cenário: Realizar checkout com informações em branco
+        Quando o usuário adiciona um item ao carrinho
+        E entra no carrinho e prossegue para o checkout
+        E o usuário realizar o checkout com as informações em branco
+        Então deverá ser direcionado para a finalização da compra
 
     @back_to_cart
-    Cenário: Voltar ao carrinho a partir da página de checkout;
+    Cenário: Voltar ao carrinho a partir da página de checkout
         Quando o usuário estiver na página de checkout
         E o usuário clicar em cancelar
         Então deverá ser direcionado para o carrinho de compras
