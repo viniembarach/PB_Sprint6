@@ -6,7 +6,7 @@ end
 E('esteja logado') do
     user_data = Factory::Static.static_data('standard_user')
     @home_page.login_page.input_username_and_password_for_login(user_data['username'], user_data['password'])
-    page.should have_selector('div.app_logo', text: 'Swag Labs')
+    expect(@home_page.header.logo_text).to eq 'Swag Labs'
 end
 
 Quando('aplicar o filtro de A a Z na vitrine') do

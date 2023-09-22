@@ -11,6 +11,10 @@ module Sections
         element :reset,                   '#reset_sidebar_link'
         element :product_filter_selector, 'select[data-test="product_sort_container"]'
 
+        def logo_text
+            logo.text
+        end
+
         def select_filter_option(option)
             find('select[data-test="product_sort_container"]').select(option)
         end

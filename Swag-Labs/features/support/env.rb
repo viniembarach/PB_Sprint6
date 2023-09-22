@@ -38,7 +38,30 @@ Capybara.register_driver :my_chrome do |app|
     Capybara::Selenium::Driver.new(app, options)
 end
 
+Capybara.register_driver :my_firefox do |app|
+    caps = Selenium::WebDriver::Remote::Capabilities.firefox("moz:firefoxOptions" => {"args" => ["--ignore-ssl-errors",
+                                                                                                 "--ignore-certificate-errors",
+                                                                                                 "--disable-popup-blocking",
+                                                                                                 "--private",
+                                                                                                 "--window-size=1420,835",
+                                                                                                 "--acceptInsecureCerts=true",
+                                                                                                 "--disable-impl-side-painting",
+                                                                                                 "--debuggerAddress=127.0.0.1:9222"]})
+  
+    if ENV['HEADLESS']
+      caps['moz:firefoxOptions']['args'] << '--headless'
+    end
+  
+    client = Selenium::WebDriver::Remote::Http::Default.new
+    client.read_timeout = 90
+    options = { browser: :firefox, desired_capabilities: caps, http_client: client }
+    Capybara::Selenium::Driver.new(app, options)
+end
 
-Capybara.default_driver        = :my_chrome
+if ENV['BROWSER'] == 'firefox'
+    Capybara.default_driver = :my_firefox
+else
+    Capybara.default_driver = :my_chrome
+end
 Capybara.app_host              = URL
 Capybara.default_max_wait_time = 10

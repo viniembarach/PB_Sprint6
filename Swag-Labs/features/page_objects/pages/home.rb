@@ -2,6 +2,7 @@ require_relative '../sections/login_page'
 require_relative '../sections/header'
 require_relative '../sections/products'
 require_relative '../sections/pdp_page'
+require_relative '../sections/footer'
 
 module Pages
     class Home < SitePrism::Page
@@ -11,6 +12,7 @@ module Pages
         section :header,        Sections::Header,     '#header_container'
         section :product_items, Sections::Products,   '#inventory_container .inventory_container'
         section :product_pdp,   Sections::Pdp_page,   '#inventory_item_container'
+        section :footer,        Sections::Footer,     '.footer'
 
         def add_product_get_name_and_price
             product_items.add_to_cart_button.click
