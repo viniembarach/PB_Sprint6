@@ -1,6 +1,4 @@
-<h1 align="center">
-    Projeto Final - Swag Labs
-<h1 >
+# Projeto Final - Swag Labs
 
 # Indice
 
